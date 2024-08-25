@@ -1,5 +1,4 @@
 name: Plan
-
 on:
   pull_request:
     branches:
@@ -10,7 +9,7 @@ jobs:
     name: Plan
     runs-on: ubuntu-latest
     env:
-      TF_VAR_GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN}}
+      TF_VAR_GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
