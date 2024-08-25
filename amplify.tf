@@ -4,21 +4,23 @@ resource "aws_amplify_app" "app" {
   access_token = var.github_access_token
   build_spec   = <<EOF
     version: 1
-    frontend:
-      phases:
-        preBuild:
-          commands:
-            - npm ci
-        build:
-          commands:
-            - npm run build
-      artifacts:
-        baseDirectory: .next
-        files:
-          - '**/*'
-      cache:
-        paths:
-          - node_modules/**/*
+    applications:
+    - appRoot: app
+      frontend:
+        phases:
+          preBuild:
+            commands:
+              - npm ci
+          build:
+            commands:
+              - npm run build
+        artifacts:
+          baseDirectory: .next
+          files:
+            - '**/*'
+        cache:
+          paths:
+            - node_modules/**/*
   EOF
 
   enable_auto_branch_creation = true
@@ -31,10 +33,7 @@ resource "aws_amplify_app" "app" {
   }
 
   environment_variables = {
-    # APIのURLを設定
-    NEXT_PUBLIC_API_URL = local.amplify_app_environment_variables.next_public_api_url
-    # カスタムイメージを設定
-    _CUSTOM_IMAGE = local.amplify_app_environment_variables.custom_image
+    "AMPLIFY_MONOREPO_APP_ROOT" = "app"
   }
 
   tags = {
