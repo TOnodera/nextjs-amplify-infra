@@ -64,6 +64,9 @@ jobs:
         working-directory: ./
         continue-on-error: true
 
+      - name: test ls
+        run: ls -al
+
       - name: Comment
         if: steps.diff.outputs.diff
         uses: actions/github-script@v3.0.0
