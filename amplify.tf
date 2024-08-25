@@ -1,7 +1,7 @@
 resource "aws_amplify_app" "app" {
   name         = "app"
   repository   = local.repository_url
-  access_token = var.github_access_token
+  access_token = var.GITHUB_ACCESS_TOKEN
   build_spec   = <<EOF
     version: 1
     applications:
