@@ -57,15 +57,15 @@ jobs:
         run: terraform validate -no-color
         working-directory: ./
 
+      - name: test ls
+        run: ls -al
+
       - name: Plan
         if: steps.diff.outputs.diff
         id: plan
         run: terraform plan -no-color
         working-directory: ./
         continue-on-error: true
-
-      - name: test ls
-        run: ls -al
 
       - name: Comment
         if: steps.diff.outputs.diff
